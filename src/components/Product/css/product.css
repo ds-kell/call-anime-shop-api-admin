@@ -1,0 +1,99 @@
+.product-image {
+  width: 200px;
+  /* Kích thước chiều rộng mới của ảnh */
+  height: 200px;
+  /* Kích thước chiều cao mới của ảnh */
+}
+.product-block{
+  padding-top: 1%;
+
+}
+.product-grid {
+  /* padding-top: 5%; */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* Tạo 4 cột có độ rộng bằng nhau */
+  grid-gap: 20px;
+  /* Khoảng cách giữa các sản phẩm */
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+
+
+.product-item {
+  display: flex;
+  flex-direction: column;
+  height: 85%;
+}
+
+.product-details-images {
+  width: 400px;
+  /* Kích thước chiều rộng mới của ảnh */
+  height: 500px;
+  /* Kích thước chiều cao mới của ảnh */
+}
+
+.product-details {
+  padding-top: 3%;
+}
+
+.size-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.size-item {
+  margin-right: 10px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 35px;
+}
+
+.btn-quantity {
+  width: 35px;
+  background-color: white;
+  border: 1px solid;
+}
+
+.input-quantity {
+  width: 80px;
+  text-align: center;
+  border: 1px solid;
+}
+.price-size{
+  padding-top:5% ;
+  padding-bottom: 3%;
+}
+.message-quantity{
+  color: red;
+}
+.product-link {
+  text-decoration: none;
+  color: #000000; /* đổi màu chữ thành đen */
+}
+.price-container {
+  display: flex;
+  align-items: center;
+}
+
+.original-price {
+  margin-right: 10px;
+  text-decoration: line-through;
+}
+
+.discounted-price {
+  font-weight: bold;
+  /* color: red; */
+  font-size: 18px
+}
+.pagination{
+  margin-left: 40%;
+}
+.checkbox-label{
+  display: block;
+  padding: 5px 0 5px 0;
+}

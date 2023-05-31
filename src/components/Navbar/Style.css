@@ -1,0 +1,102 @@
+.menu-bar {
+  background-color: #adcbcc;
+  padding-bottom: 1%;
+
+}
+
+.shopName {
+  color: rgb(0, 0, 0);
+  text-align: center;
+  font-family: ans-serif;
+  font-size: 40px;
+  text-shadow: 3px 3px 3px #adcbcc;
+
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    /* background: #d8c8c8; */
+    border-radius: 20px;
+    color: rgb(255, 255, 255);
+    text-shadow: 3px 3px 3px rgb(255, 255, 255);
+    text-decoration: none;
+  }
+}
+
+.search-btn {
+  border-radius: 10px;
+  width: 100px;
+  height: 35px;
+  margin-left: 0px;
+  margin-top: 14px;
+}
+
+.search-box {
+  width: 75%;
+  height: 35px;
+  margin-top: 13px;
+  border-radius: 10px;
+
+}
+
+.cart-text {
+  padding: 4px 0px 4px 22px;
+  background-color: #ffffff;
+  border: solid 2px;
+  border-color: #000000;
+  border-radius: 10px;
+  margin-top: 13px;
+  color: rgb(0, 0, 0);
+
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    background: #b2ebe8;
+    border-radius: 10px;
+    color: rgb(44, 40, 40);
+    text-shadow: 3px 3px 3px rgb(255, 255, 255);
+    text-decoration: none;
+
+  }
+}
+
+.hover-logout {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  /* background: white; */
+  padding: 15px 15px 15px 15px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+.login-text{
+  color: rgba(0, 0, 0, 0.721);
+  text-decoration: none;
+}
+.dropdown-wrapper {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  display: none;
+  padding-left: 0;
+}
+
+.dropdown-wrapper.open .dropdown {
+  display: block;
+  width: 130px;
+  background-color: white;
+  border-radius: 5px;
+}
+.nav-link-children:hover {
+  color: rgb(24, 104, 195);
+  background-color: whitesmoke;
+  border-radius: 5px;
+}
+.nav-link{
+  color:#000000;
+  /* width: 130px; */
+  padding-top: 17px;
+}
+

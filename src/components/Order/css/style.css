@@ -1,0 +1,34 @@
+.container {
+    margin-top: 20px;
+}
+
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.order-table th,
+.order-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.order-table th {
+    background-color: #f0f0f0;
+}
+
+.confirm-btn,
+.details-btn {
+    padding: 5px 10px;
+    margin-right: 5px;
+}
+
+.confirm-btn {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+.details-btn {
+    background-color: #2196f3;
+    color: #fff;
+}

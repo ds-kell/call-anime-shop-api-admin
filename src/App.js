@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from 'react-router-dom';
 
+import Navbar from './components/Navbar/Navbar'
+import Home from './pages/Home';
+import Login from './components/Login/Login';
+import useToken from './components/Login/useToken';
+import { GetProduct } from './components/Product/GetProduct';
+import AddProduct from './components/Product/AddProduct';
+import { GetOrder } from './components/Order/GetOrder';
 function App() {
+  const { token, setToken } = useToken();
+
+	if (!token) {
+		return <Login setToken={setToken} />
+	}
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path='/products' element={<GetProduct />} />
+        <Route path='/add-product' element={<AddProduct />} />
+        <Route path='/orders' element={<GetOrder />} />
+      </Routes>
+    </>
   );
 }
 
