@@ -1,17 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GetCategory } from '../Category/GetCategory';
 import { GetBrand } from '../Brand/GetBrand';
 import { GetMaterial } from '../Material/GetMaterial';
 import { GetDiscount } from '../Discount/GetDiscount';
 import './css/addProduct.css';
+import { storage } from "../../firebase";
+import { v4 } from "uuid";
+import {
+    ref,
+    uploadBytes,
+    getDownloadURL,
+} from "firebase/storage";
 
 const AddProduct = () => {
     const [product, setProduct] = useState({
         name: '',
+        brandId: '',
+        categoryId: '',
+        materialId: '',
+        discountId: '',
         price: 0,
         description: '',
         images: [],
     });
+
+    const [imageUrls, setImageUrls] = useState([]);
+    const [isUploading, setIsUploading] = useState(false);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -29,18 +43,70 @@ const AddProduct = () => {
         }));
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // Xử lý logic thêm sản phẩm tại đây
-        console.log('Sản phẩm được gửi đi:', product);
-        // Reset form sau khi submit thành công
-        setProduct({
-            name: '',
-            price: 0,
-            description: '',
-            images: [],
-        });
+    const uploadFile = async () => {
+        const tempUrls = [];
+        for (let i = 0; i < product.images.length; i++) {
+            const image = product.images[i];
+            const storageRef = ref(storage, `images/${v4() + image.name}`);
+            try {
+                const snapshot = await uploadBytes(storageRef, image);
+                const downloadURL = await getDownloadURL(snapshot.ref);
+                tempUrls.push(downloadURL);
+            } catch (error) {
+                console.error("Error uploading image:", error);
+            }
+        }
+        setImageUrls(tempUrls);
+        setIsUploading(true);
     };
+
+    const handleBrandChange = (brandId) => {
+        setProduct((prevProduct) => ({
+            ...prevProduct,
+            brandId: brandId,
+        }));
+    };
+
+    const handleCategoryChange = (categoryId) => {
+        setProduct((prevProduct) => ({
+            ...prevProduct,
+            categoryId: categoryId,
+        }));
+    };
+
+    const handleDiscountChange = (discountId) => {
+        setProduct((prevProduct) => ({
+            ...prevProduct,
+            discountId: discountId,
+        }));
+    };
+
+    const handleMaterialChange = (materialId) => {
+        setProduct((prevProduct) => ({
+            ...prevProduct,
+            materialId: materialId,
+        }));
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        await uploadFile();
+    };
+
+    useEffect(() => {
+        const newProduct = {
+            name: product.name,
+            brandId: product.brandId,
+            categoryId: product.categoryId,
+            materialId: product.materialId,
+            discountId: product.discountId,
+            price: product.price,
+            description: product.description,
+            images: imageUrls,
+        };
+        console.log(newProduct);
+    }, [imageUrls]);
+
 
     return (
         <div className='container'>
@@ -63,23 +129,21 @@ const AddProduct = () => {
                         </div>
                         <div>
                             <label htmlFor="brand">Thương hiệu:</label>
-                            <GetBrand></GetBrand>
+                            <GetBrand onBrandChange={handleBrandChange}></GetBrand>
                         </div>
                         <div>
                             <label htmlFor="category">Danh mục:</label>
-
-                            <GetCategory></GetCategory>
-                        </div>
-                        <div>
-                            <label htmlFor="discount">Ưu đãi:</label>
-
-                            <GetDiscount></GetDiscount>
+                            <GetCategory onCategoryChange={handleCategoryChange} ></GetCategory>
                         </div>
                         <div>
                             <label htmlFor="material">Chất liệu:</label>
-
-                            <GetMaterial></GetMaterial>
+                            <GetMaterial onMaterialChange={handleMaterialChange}></GetMaterial>
                         </div>
+                        <div>
+                            <label htmlFor="discount">Ưu đãi:</label>
+                            <GetDiscount onDiscountChange={handleDiscountChange}></GetDiscount>
+                        </div>
+
                         <div>
                             <label htmlFor="price">Giá:</label>
                             <input
@@ -129,7 +193,7 @@ const AddProduct = () => {
                     </div>
                     {/* <div className='col-md-2'></div> */}
                     <center>
-                        <button type="submit">Thêm</button>
+                        <button type="submit" onClick={handleSubmit}>Thêm</button>
                     </center>
                 </form>
             </div>

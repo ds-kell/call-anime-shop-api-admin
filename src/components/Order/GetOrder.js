@@ -20,7 +20,7 @@ function GetOrder() {
         axios.post('http://localhost:8088/api/user/order/custom-bills', config)
             .then(response => {
                 setOrders(response.data.data);
-                console.log(response.data.data)
+                // console.log(response.data.data)
             })
             .catch(error => {
                 console.log(error);
@@ -28,13 +28,22 @@ function GetOrder() {
     }, []);
 
     const handleConfirm = (orderId) => {
-        // Xử lý khi nhấn nút "Xác nhận"
-        console.log("Đã xác nhận đơn hàng", orderId);
+        console.log(orderId)
+        axios.put("http://localhost:8088/api/user/order", {
+            billId: orderId,
+            status: 'SHIPPING'
+        }, config)
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
     const handleViewDetails = (orderId) => {
         // Xử lý khi nhấn nút "Xem chi tiết"
-        console.log("Xem chi tiết đơn hàng", orderId);
+        // console.log("Xem chi tiết đơn hàng", orderId);
     }
 
 
@@ -63,15 +72,17 @@ function GetOrder() {
                             </td>
                             <td>
                                 {order.productBills.map((productBill) => (
-                                    <div key={productBill.id}>{productBill.quantity}</div>
+                                    <center>
+                                        <div key={productBill.id}>{productBill.quantity}</div>
+                                    </center>
                                 ))}
                             </td>
                             <td>{order.paymentMethod}</td>
                             <td>{order.deliveryAddressDto.province}, {order.deliveryAddressDto.district}, {order.deliveryAddressDto.ward}</td>
                             <td>{order.status}</td>
                             <td>
-                                <button className='confirm-btn' onClick={handleConfirm(order.id)}>Xác nhận</button>
-                                <button className='details-btn' onClick={handleViewDetails(order.id)}>Xem chi tiết</button>
+                                <button className='confirm-btn' onClick={() => handleConfirm(order.id)}> Xác nhận</button>
+                                <button className='details-btn' onClick={() => handleViewDetails(order.id)}>Xem chi tiết</button>
                             </td>
                         </tr>
                     ))}

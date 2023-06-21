@@ -8,7 +8,6 @@ import './css/style.css';
 const accessToken = sessionStorage.getItem('utoken');
 let config = {};
 if (accessToken) {
-    console.log('Bearer ' + accessToken.slice(1, -1));
     config = {
         headers: { Authorization: 'Bearer ' + accessToken.slice(1, -1) }
     };
@@ -20,7 +19,7 @@ function GetMaterial(props) {
         axios.get('http://localhost:8088/api/product/materials', config)
             .then(response => {
                 setMaterials(response.data.data);
-                console.log(response)
+                // console.log(response)
             })
             .catch(error => {
                 console.log(error);

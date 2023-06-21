@@ -8,7 +8,7 @@ import './css/style.css';
 const accessToken = sessionStorage.getItem('utoken');
 let config = {};
 if (accessToken) {
-    console.log('Bearer ' + accessToken.slice(1, -1));
+    // console.log('Bearer ' + accessToken.slice(1, -1));
     config = {
         headers: { Authorization: 'Bearer ' + accessToken.slice(1, -1) }
     };
@@ -20,7 +20,7 @@ function GetBrand(props) {
         axios.get('http://localhost:8088/api/product/brands', config)
             .then(response => {
                 setBrands(response.data.data);
-                console.log(response)
+                // console.log(response)
             })
             .catch(error => {
                 console.log(error);

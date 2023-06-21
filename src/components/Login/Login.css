@@ -1,4 +1,75 @@
-.error-message{
+.error-message {
     color: red;
     font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.left-img {
+    margin-left: 10px;
+    width: 95%;
+    /* height: 90%; */
+}
+
+.right-img {
+    width: 105%;
+    
+}
+
+.login_block {
+    margin-top: 200px;
+    margin-left: 35px;
+}
+
+.input_block input {
+    width: 400px;
+}
+
+.submitBtn {
+    margin-left: 30%;
+    margin-top: 2%;
+}
+
+.submitBtn button {
+    background-color: #72c3c9;
+    width: 100px;
+    height: 35px;
+    border-radius: 2px;
+
+}
+
+.inline-block,
+.other-login {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.first-p {
+    margin-right: auto;
+}
+
+.last-p {
+    margin-left: auto;
+    margin-right: 90px;
+}
+
+.or-title {
+    color: gray;
+}
+
+.signup-btn{
+    margin-left: 30%;
+    margin-top: 2%;
+    background-color: #72c3c9;
+    width: 100px;
+    height: 35px;
+}
+.username-input{
+    margin:  5px 0 5px 0;
+    width: 400px;
+    margin-left: 10px;
+}
+.login_block h4{
+    margin-left: 30%;
+    margin-bottom: 30px;
 }
